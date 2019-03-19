@@ -50,8 +50,7 @@ class _AnimWidgetState extends State<AnimWidget>
 class AnimationDemoView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return null;
+    return _AnimationDemoState();
   }
 
 }
@@ -84,7 +83,6 @@ class _AnimationDemoState extends State<AnimationDemoView>
     Tween(begin: padding, end: displayWidth - padding).animate(controller)
       ..addListener(() {
         setState(() {
-          //TODO
         });
       })
       ..addStatusListener((state) {
@@ -108,6 +106,7 @@ class _AnimationDemoState extends State<AnimationDemoView>
   Widget build(BuildContext context) {
     final unit = 24.0;
     final marginLeft = left == null ? padding : left.value;
+    debugPrint("anim_value=${left.value}");
     final unitizedLeft = (marginLeft - padding) / unit;
     final unitizedTop = math.sin(unitizedLeft);
     final marginTop = (unitizedTop + 1) * unit + padding;
