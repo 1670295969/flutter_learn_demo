@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/msg_client.dart';
+import 'package:flutter_app/msg_server.dart';
 
-void main(){
+HttpEchoServer _server;
+HttpEchoClient _client;
+
+void main() {
   runApp(AppStart());
 }
 
@@ -10,9 +15,18 @@ class Message {
 
   Message(this.msg, this.timestamp);
 
+  Message.create(String msg)
+      : msg = msg,
+        timestamp = DateTime.now().millisecondsSinceEpoch;
+
+  Map<String, dynamic> toJson() => {"msg": "$msg", "timestamp": timestamp};
+
+  Message.fromJson(Map<String, dynamic> map)
+      : msg = map["msg"],
+        timestamp = map["timestamp"];
+
   @override
   String toString() {
-    // TODO: implement toString
     return "Message{msg:$msg, timestamp:$timestamp}";
   }
 }
@@ -60,8 +74,8 @@ class _MessageFormState extends State<MessageForm> {
             onTap: () {
               Navigator.pop(
                   context,
-                  Message(editController.text,
-                      DateTime.now().millisecondsSinceEpoch));
+                  editController.text
+                     );
             },
             onDoubleTap: () => debugPrint("double tapped"),
             onLongPress: () => debugPrint("long pressed"),
@@ -102,21 +116,31 @@ class AddMessageScreen extends StatelessWidget {
 }
 
 class MessageListScreen extends StatelessWidget {
-  final messageListKey = GlobalKey<_MessageListState>(debugLabel: "messageListKey");
+  final messageListKey =
+      GlobalKey<_MessageListState>(debugLabel: "messageListKey");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Echo client"),
       ),
-      body: MessageList(key:messageListKey),
+      body: MessageList(key: messageListKey),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final result = await Navigator.push(
               context, MaterialPageRoute(builder: (_) => AddMessageScreen()));
-//          debugPrint(result);
-          if(result is Message){
-            messageListKey.currentState.addMessage(result);
+
+          if(_client == null){
+            return;
+          }
+
+          var msg = await _client.send(result);
+
+          if(msg!=null){
+            messageListKey.currentState.addMessage(msg);
+          }else{
+            debugPrint('fail to send $result');
           }
         },
         tooltip: "Add Message",
@@ -126,26 +150,48 @@ class MessageListScreen extends StatelessWidget {
   }
 }
 
-class MessageList extends StatefulWidget{
+class MessageList extends StatefulWidget {
+  MessageList({Key key}) : super(key: key);
 
-  MessageList({Key key}) :super(key:key);
   @override
   State<StatefulWidget> createState() {
     return _MessageListState();
   }
-
 }
 
-
-class _MessageListState extends State<MessageList>{
+class _MessageListState extends State<MessageList> with WidgetsBindingObserver {
   final List<Message> messageList = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+    const port = 6060;
+    _server = HttpEchoServer(port);
+    _server.start().then((_){
+      _client = HttpEchoClient(port);
+      _client.getHistory().then((list){
+        setState(() {
+          messageList.addAll(list);
+        });
+      });
+
+      WidgetsBinding.instance.addObserver(this);
+
+
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: messageList.length,
-      itemBuilder: (context,index){
+      itemBuilder: (context, index) {
         final msg = messageList[index];
-        final subTitle = DateTime.fromMicrosecondsSinceEpoch(msg.timestamp).toLocal().toIso8601String();
+        final subTitle = DateTime.fromMicrosecondsSinceEpoch(msg.timestamp)
+            .toLocal()
+            .toIso8601String();
         return ListTile(
           title: Text(msg.msg),
           subtitle: Text(subTitle),
@@ -154,62 +200,28 @@ class _MessageListState extends State<MessageList>{
     );
   }
 
-
-  void addMessage(Message msg){
+  void addMessage(Message msg) {
     setState(() {
       messageList.add(msg);
     });
   }
 
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if(state == AppLifecycleState.paused){
+      var server = _server;
+      _server = null;
+      server?.close();
+    }
+
+
+
+  }
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
