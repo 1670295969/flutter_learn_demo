@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:flutter_app/edittext.dart';
-import 'package:flutter_app/listdata.dart';
-import 'package:flutter_app/simple.dart';
+import 'package:flutter_app/learn_simple/edittext.dart';
+import 'package:flutter_app/learn_simple/listdata.dart';
+import 'package:flutter_app/learn_simple/simple.dart';
 import 'dart:ui';
 
 

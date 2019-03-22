@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'package:flutter_app/msgclient.dart';
+import 'package:flutter_app/learn_simple/msgclient.dart';
 
 class HttpEchoServer {
   static const GET = "GET";

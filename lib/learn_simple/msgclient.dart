@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/msg_client.dart';
-import 'package:flutter_app/msg_server.dart';
+import 'package:flutter_app/learn_simple/msg_client.dart';
+import 'package:flutter_app/learn_simple/msg_server.dart';
 
 HttpEchoServer _server;
 HttpEchoClient _client;

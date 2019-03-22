@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/border.dart';
+import 'package:flutter_app/learn_simple/border.dart';
 
 enum BuildingType { theater, restaurant }
 
