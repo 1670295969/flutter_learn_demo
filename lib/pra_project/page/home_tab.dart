@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   BannerView _bannerView;
 
   //获取banner列表
-  void _getBannerList() {
+  void _getBannerList() async {
     NetProxy.get(AppApi.BANNER, onSuccess: (data) {
       var dataResult = DataResult.fromJson(data);
       var bannerList = ArticleBanner.fromJsonArray(dataResult.data);
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   //获取文章列表
-  void _getArticleList() {
+  void _getArticleList() async {
     NetProxy.get(AppApi.ARTICLE_LIST + "$curArticlePage/json",
         onSuccess: (data) {
       var dataResult = DataResult.fromJson(data);
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _controller = ScrollController()
-      ..addListener(() {
+      ..addListener(() async {
         var maxScroll = _controller.position.maxScrollExtent;
         var pixels = _controller.position.pixels;
         if (maxScroll == pixels && articleDataList.length < articleTotalSize) {
@@ -86,6 +86,13 @@ class _HomePageState extends State<HomePage> {
     _controller?.dispose();
   }
 
+  Future<Null> _pullToRefresh() async {
+    curArticlePage = 0;
+    _getBannerList();
+    _getArticleList();
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (articleDataList == null) {
@@ -98,7 +105,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, i) => buildItem(i),
         controller: _controller,
       );
-      return listView;
+      return RefreshIndicator(child: listView, onRefresh: _pullToRefresh);
     }
   }
 

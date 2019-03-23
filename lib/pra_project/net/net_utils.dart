@@ -21,23 +21,18 @@ class NetProxy {
     return AppUrl.getUrl(api);
   }
 
+  static void get(String api,
+      {Map<String, dynamic> params,
+      Map<String, dynamic> headers,
+      OnSuccessCallBack onSuccess,
+      OnErrorCallBack onError}) async {
+    Response resp = await _getDio().get(_getFullUrl(api),
+        queryParameters: params, options: Options(headers: headers));
 
-  static void get(String api, {
-    Map<String, dynamic> params,
-    Map<String, dynamic> headers,
-    OnSuccessCallBack onSuccess,
-    OnErrorCallBack onError
-  }) {
-    _getDio().get(_getFullUrl(api),
-        queryParameters: params,
-      options: Options(headers: headers)
-    ).then((resp){
-
-      if(resp.statusCode != 200){
-        onError(resp.statusCode,"请求数据错误");
-        return;
-      }
-      onSuccess(resp.data);
-    });
+    if (resp.statusCode != 200) {
+      onError(resp.statusCode, "请求数据错误");
+      return;
+    }
+    onSuccess(resp.data);
   }
 }
