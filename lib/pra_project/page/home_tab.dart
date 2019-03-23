@@ -4,6 +4,7 @@ import 'package:flutter_app/pra_project/bean/banner.dart';
 import 'package:flutter_app/pra_project/bean/base_result.dart';
 import 'package:flutter_app/pra_project/net/base_api.dart';
 import 'package:flutter_app/pra_project/net/net_utils.dart';
+import 'package:flutter_app/pra_project/page/article_item_view.dart';
 import 'package:flutter_app/pra_project/utils/constants.dart';
 import 'package:flutter_app/pra_project/widgeet/banner_view.dart';
 
@@ -43,7 +44,8 @@ class _HomePageState extends State<HomePage> {
 
   //获取文章列表
   void _getArticleList() {
-    NetProxy.get(AppApi.ARTICLE_LIST + "$curArticlePage/json", onSuccess: (data) {
+    NetProxy.get(AppApi.ARTICLE_LIST + "$curArticlePage/json",
+        onSuccess: (data) {
       var dataResult = DataResult.fromJson(data);
       var pageData = CommonData.fromJson(dataResult.data);
       articleTotalSize = pageData.total;
@@ -119,7 +121,7 @@ class _HomePageState extends State<HomePage> {
       );
     } else {
       var item = itemData as ArticleItem;
-      return Text("${item.title}");
+      return ArticleItemView(item);
     }
   }
 }
