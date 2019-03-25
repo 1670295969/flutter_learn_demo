@@ -17,4 +17,34 @@ class NetStorage {
     var pageData = CommonData.fromJson(dataResult.data);
     return pageData;
   }
+
+  ///**
+// * {
+//    "data": {
+//    "chapterTops": [],
+//    "collectIds": [
+//    7445,
+//    8105,
+//    8104,
+//    8027,
+//    8025,
+//    8023
+//    ],
+//    "email": "",
+//    "icon": "",
+//    "id": 6142,
+//    "password": "",
+//    "token": "",
+//    "type": 0,
+//    "username": "canhuah"
+//    },
+//    "errorCode": 0,
+//    "errorMsg": ""
+//    }
+// */
+  static Future<DataResult> login(String userName, String password) async {
+    var data = await NetProxy.post(AppApi.LOGIN,
+        params: {"username": userName, "password": password});
+    return DataResult.fromJson(data);
+  }
 }

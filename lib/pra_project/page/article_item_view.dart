@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pra_project/bean/article.dart';
+import 'package:flutter_app/pra_project/login/login_mamager.dart';
+import 'package:flutter_app/pra_project/login/login_page.dart';
 import 'package:flutter_app/pra_project/page/article_web_page.dart';
 
 class ArticleItemView extends StatefulWidget {
@@ -64,9 +66,15 @@ class _ArticleItemViewState extends State<ArticleItemView> {
             style: TextStyle(color: Colors.blue),
           ),
         ),
-        IconButton(
-          icon: Icon(item.collect ? Icons.favorite : Icons.favorite_border),
-          color: item.collect ? Colors.red : null,
+        InkWell(
+          child: IconButton(
+            icon: Icon(item.collect ? Icons.favorite : Icons.favorite_border),
+            color: item.collect ? Colors.red : null,
+          ),
+          onTap: () async {
+//            var isLogin = await LoginManager.isLogin();
+            LoginPage.toLogin(context);
+          },
         )
       ],
     );

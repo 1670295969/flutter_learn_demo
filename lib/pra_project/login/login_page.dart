@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pra_project/login/login_mamager.dart';
+import 'package:flutter_app/pra_project/net/net_storage.dart';
 
 class LoginPage extends StatefulWidget {
+
+  static Future<dynamic> toLogin(BuildContext context) async{
+    return Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+      return LoginPage();
+    }));
+  }
+
   @override
   State<StatefulWidget> createState() {
     return _LoginPageState();
@@ -11,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _userNameController;
   TextEditingController _pwdNameController;
   GlobalKey<ScaffoldState> scaffoldKey;
+
+  bool _isLogining = false;
 
   @override
   void initState() {
@@ -55,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         RaisedButton(
           child: Text(
-            "登录",
+            "注册",
             style: TextStyle(color: Colors.white),
           ),
           color: Colors.blue,
@@ -66,12 +77,52 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
   }
-  void _login(){
 
+  void _login() {
+    setState(() => _isLogining = true);
+    var userName = _userNameController.text;
+    var password = _pwdNameController.text;
+
+    NetStorage.login(userName, password).then((data) {
+      LoginManager.saveUserInfo(userName);
+      setState(() => _isLogining = false);
+    }).catchError((e) {
+      setState(() => _isLogining = false);
+    });
   }
 
-  void _toRegister(){
+  void _toRegister() {}
 
+  Widget _loginPageView() {
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          _headIcon(),
+          _textInput("用户名", false, _userNameController),
+          _textInput("密码", true, _pwdNameController),
+          _btns(),
+        ],
+      ),
+    );
+  }
+
+  Widget _fillLoginView() {
+    if (_isLogining) {
+      return Stack(
+        children: <Widget>[
+          _loginPageView(),
+          Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 4,
+              valueColor: AlwaysStoppedAnimation(Colors.blue),
+            ),
+          )
+        ],
+      );
+    } else {
+      return _loginPageView();
+    }
   }
 
   @override
@@ -80,17 +131,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text("登录"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            _headIcon(),
-            _textInput("用户名", false, _userNameController),
-            _textInput("密码", true, _pwdNameController),
-            _btns(),
-          ],
-        ),
-      ),
+      body: _fillLoginView(),
     );
   }
 }
