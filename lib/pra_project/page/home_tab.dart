@@ -3,6 +3,7 @@ import 'package:flutter_app/pra_project/bean/article.dart';
 import 'package:flutter_app/pra_project/bean/banner.dart';
 import 'package:flutter_app/pra_project/bean/base_result.dart';
 import 'package:flutter_app/pra_project/net/base_api.dart';
+import 'package:flutter_app/pra_project/net/net_storage.dart';
 import 'package:flutter_app/pra_project/net/net_utils.dart';
 import 'package:flutter_app/pra_project/page/article_item_view.dart';
 import 'package:flutter_app/pra_project/utils/constants.dart';
@@ -30,36 +31,38 @@ class _HomePageState extends State<HomePage> {
 
   //获取banner列表
   void _getBannerList() async {
-    NetProxy.get(AppApi.BANNER, onSuccess: (data) {
-      var dataResult = DataResult.fromJson(data);
-      var bannerList = ArticleBanner.fromJsonArray(dataResult.data);
-      setState(() {
-        bannerData = bannerList;
-        _bannerView = BannerView(
-          data: bannerList,
-        );
-      });
+    var bannerList = await NetStorage.getBannerList();
+//        .catchError((e) {
+//      debugPrint("bannerError->$e");
+//    });
+    if(bannerList == null){
+      return ;
+    }
+    setState(() {
+      bannerData = bannerList;
+      _bannerView = BannerView(
+        data: bannerList,
+      );
     });
   }
 
   //获取文章列表
   void _getArticleList() async {
-    NetProxy.get(AppApi.ARTICLE_LIST + "$curArticlePage/json",
-        onSuccess: (data) {
-      var dataResult = DataResult.fromJson(data);
-      var pageData = CommonData.fromJson(dataResult.data);
-      articleTotalSize = pageData.total;
-      curArticlePage++;
-      var articleList = ArticleItem.fromJsonArray(pageData.datas);
-      setState(() {
-        if (curArticlePage <= 0) {
-          articleDataList.clear();
-        }
-        articleDataList.addAll(articleList);
-        if (articleDataList.length >= articleTotalSize) {
-          articleDataList.add(Constants.END_LINE_TAG);
-        }
-      });
+    var pageData = await NetStorage.getArticleList(curArticlePage);
+    if(pageData == null){
+      return ;
+    }
+    articleTotalSize = pageData.total;
+    curArticlePage++;
+    var articleList = ArticleItem.fromJsonArray(pageData.datas);
+    setState(() {
+      if (curArticlePage <= 0) {
+        articleDataList.clear();
+      }
+      articleDataList.addAll(articleList);
+      if (articleDataList.length >= articleTotalSize) {
+        articleDataList.add(Constants.END_LINE_TAG);
+      }
     });
   }
 
