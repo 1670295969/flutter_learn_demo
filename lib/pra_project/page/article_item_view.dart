@@ -20,7 +20,7 @@ class _ArticleItemViewState extends State<ArticleItemView> {
 
   _ArticleItemViewState(this.item);
 
-  Widget _AuthorInfo() {
+  Widget _authorInfo() {
     return Row(
       children: <Widget>[
         Expanded(
@@ -87,7 +87,7 @@ class _ArticleItemViewState extends State<ArticleItemView> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(bottom: 5.0),
-            child: _AuthorInfo(),
+            child: _authorInfo(),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 5.0),

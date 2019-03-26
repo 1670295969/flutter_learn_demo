@@ -85,13 +85,35 @@ class _LoginPageState extends State<LoginPage> {
 
     NetStorage.login(userName, password).then((data) {
       LoginManager.saveUserInfo(userName);
+      _showMessage("登录成功");
       setState(() => _isLogining = false);
     }).catchError((e) {
       setState(() => _isLogining = false);
     });
   }
 
-  void _toRegister() {}
+  //
+  void _toRegister() {
+    setState(() => _isLogining = true);
+    var userName = _userNameController.text;
+    var password = _pwdNameController.text;
+    var rePassword = password;
+
+    NetStorage.register(userName, password, rePassword)
+    .catchError((e){
+      setState(() => _isLogining = false);
+      _showMessage("注册失败");
+    })
+    .then((data){
+      setState(() => _isLogining = false);
+      _showMessage("注册成功");
+    });
+
+  }
+
+  void _showMessage(String msg) {
+    scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(msg)));
+  }
 
   Widget _loginPageView() {
     return Padding(

@@ -43,8 +43,16 @@ class NetStorage {
 //    }
 // */
   static Future<DataResult> login(String userName, String password) async {
-    var data = await NetProxy.post(AppApi.LOGIN,
+    return NetProxy.postDataResult(AppApi.LOGIN,
         params: {"username": userName, "password": password});
-    return DataResult.fromJson(data);
+  }
+
+  static Future<DataResult> register(
+      String userName, String password, String rePassword) {
+    return NetProxy.postDataResult(AppApi.REGISTER, params: {
+      "username": userName,
+      "password": password,
+      "repassward": rePassword
+    });
   }
 }

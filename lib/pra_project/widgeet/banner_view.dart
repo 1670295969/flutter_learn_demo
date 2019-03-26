@@ -5,9 +5,7 @@ import 'package:flutter_app/pra_project/bean/banner.dart';
 
 //banner 指示器
 
-/**
- * 指示器
- */
+///指示器
 class IndicatorWidget extends StatelessWidget {
   final Widget indicatorNormal;
   final Widget indicatorSelected;

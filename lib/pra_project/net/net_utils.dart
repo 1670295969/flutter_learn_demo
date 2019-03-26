@@ -16,6 +16,10 @@ class NetProxy {
     return NetException(netCode, "请求数据错误");
   }
 
+  static NetException _errorExceptionWithMsg(int netCode, String message) {
+    return NetException(netCode, message);
+  }
+
   static Dio _getDio() {
     return _HttpHolder.dio;
   }
@@ -50,6 +54,20 @@ class NetProxy {
   static Future<DataResult> getDataResult(String api,
       {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
     var data = await get(api, params: params, headers: headers);
-    return DataResult.fromJson(data);
+    var resultData = DataResult.fromJson(data);
+    if (resultData.errorCode != 0) {
+      throw _errorExceptionWithMsg(resultData.errorCode, resultData.errorMsg);
+    }
+    return resultData;
+  }
+
+  static Future<DataResult> postDataResult(String api,
+      {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
+    var data = await post(api, params: params, headers: headers);
+    var resultData = DataResult.fromJson(data);
+    if (resultData.errorCode != 0) {
+      throw _errorExceptionWithMsg(resultData.errorCode, resultData.errorMsg);
+    }
+    return resultData;
   }
 }
