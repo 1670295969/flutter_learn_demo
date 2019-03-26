@@ -60,5 +60,18 @@ class NetStorage {
     return NetProxy.getDataResult(AppApi.TREE);
   }
 
+  //获取文章列表
+  static Future<CommonData> getArticleListWithTagId(int page,int id) async {
+    var map = {"cid":id};
+    var data = await NetProxy.get(AppApi.ARTICLE_LIST + "$page/json",params: map);
+    var dataResult = DataResult.fromJson(data);
+    var pageData = CommonData.fromJson(dataResult.data);
+    return pageData;
+  }
+
+
+
+
+
 
 }

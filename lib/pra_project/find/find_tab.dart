@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pra_project/bean/find.dart';
+import 'package:flutter_app/pra_project/find/article_manager_page.dart';
 import 'package:flutter_app/pra_project/net/net_storage.dart';
 
 class FindPage extends StatefulWidget {
@@ -93,7 +94,12 @@ class FindPageState extends State<FindPage> {
       );
     } else {
       return ListView.builder(
-        itemBuilder: (ctx, index) => _buildItem(findList[index]),
+        itemBuilder: (ctx, index) => InkWell(
+              child: _buildItem(findList[index]),
+              onTap: () {
+                ArticleManagerPage.push(context, findList[index]);
+              },
+            ),
         itemCount: findList.length,
       );
     }
