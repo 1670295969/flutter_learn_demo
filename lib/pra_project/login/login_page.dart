@@ -3,9 +3,8 @@ import 'package:flutter_app/pra_project/login/login_mamager.dart';
 import 'package:flutter_app/pra_project/net/net_storage.dart';
 
 class LoginPage extends StatefulWidget {
-
-  static Future<dynamic> toLogin(BuildContext context) async{
-    return Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+  static Future<dynamic> toLogin(BuildContext context) async {
+    return Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
       return LoginPage();
     }));
   }
@@ -85,9 +84,9 @@ class _LoginPageState extends State<LoginPage> {
 
     NetStorage.login(userName, password).then((data) {
       LoginManager.saveUserInfo(userName);
-      _showMessage("登录成功");
       setState(() => _isLogining = false);
-    }).catchError((e) {
+      _showMessage("登录成功");
+    }, onError: (e) {
       setState(() => _isLogining = false);
     });
   }
@@ -99,16 +98,13 @@ class _LoginPageState extends State<LoginPage> {
     var password = _pwdNameController.text;
     var rePassword = password;
 
-    NetStorage.register(userName, password, rePassword)
-    .catchError((e){
-      setState(() => _isLogining = false);
-      _showMessage("注册失败");
-    })
-    .then((data){
+    NetStorage.register(userName, password, rePassword).then((data) {
       setState(() => _isLogining = false);
       _showMessage("注册成功");
+    }, onError: (e) {
+      setState(() => _isLogining = false);
+      _showMessage("注册失败");
     });
-
   }
 
   void _showMessage(String msg) {
@@ -150,6 +146,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text("登录"),
       ),

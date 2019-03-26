@@ -32,9 +32,6 @@ class _HomePageState extends State<HomePage> {
   //获取banner列表
   void _getBannerList() async {
     var bannerList = await NetStorage.getBannerList();
-//        .catchError((e) {
-//      debugPrint("bannerError->$e");
-//    });
     if(bannerList == null){
       return ;
     }

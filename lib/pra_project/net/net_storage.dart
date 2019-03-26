@@ -6,8 +6,7 @@ import 'package:flutter_app/pra_project/net/net_utils.dart';
 class NetStorage {
 //获取banner列表
   static Future<List<ArticleBanner>> getBannerList() async {
-    var data = await NetProxy.get(AppApi.BANNER);
-    var dataResult = DataResult.fromJson(data);
+    var dataResult = await NetProxy.getDataResult(AppApi.BANNER);
     return ArticleBanner.fromJsonArray(dataResult.data);
   }
 
@@ -47,6 +46,7 @@ class NetStorage {
         params: {"username": userName, "password": password});
   }
 
+  //返回数据样式和login一样
   static Future<DataResult> register(
       String userName, String password, String rePassword) {
     return NetProxy.postDataResult(AppApi.REGISTER, params: {
