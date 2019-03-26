@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pra_project/bean/base_result.dart';
 import 'package:flutter_app/pra_project/net/base_api.dart';
 import 'package:flutter_app/pra_project/net/net_utils.dart';
-import 'package:flutter_app/pra_project/page/find_tab.dart';
+import 'package:flutter_app/pra_project/find/find_tab.dart';
 import 'package:flutter_app/pra_project/page/home_tab.dart';
 import 'package:flutter_app/pra_project/page/mine_tab.dart';
 
@@ -46,8 +46,8 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
   _initBottomNavList() {
     _navViewList = [
       _getBottomNavItem(Icons.home, Text(_bottomNavTitles[0])),
-      _getBottomNavItem(Icons.find_in_page, Text(_bottomNavTitles[0])),
-      _getBottomNavItem(Icons.person, Text(_bottomNavTitles[0])),
+      _getBottomNavItem(Icons.find_in_page, Text(_bottomNavTitles[1])),
+      _getBottomNavItem(Icons.person, Text(_bottomNavTitles[2])),
     ];
   }
 

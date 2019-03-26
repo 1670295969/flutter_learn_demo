@@ -55,4 +55,10 @@ class NetStorage {
       "repassward": rePassword
     });
   }
+
+  static Future<DataResult> getFindList(){
+    return NetProxy.getDataResult(AppApi.TREE);
+  }
+
+
 }
