@@ -17,7 +17,12 @@ class LoginManager {
     return value;
   }
 
+  static Future<String> getUserName() async{
+    return await SpUtils.getString(KEY_USER_NAME,"");
+  }
+
   static Future<bool> isLogin() async {
-    return await SpUtils.getBool(KEY_IS_LOGIN);
+    var isLogin =  await SpUtils.getBool(KEY_IS_LOGIN);
+    return isLogin == true;
   }
 }

@@ -86,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
       LoginManager.saveUserInfo(userName);
       setState(() => _isLogining = false);
       _showMessage("登录成功");
+      Navigator.pop(context);
     }, onError: (e) {
       setState(() => _isLogining = false);
     });
