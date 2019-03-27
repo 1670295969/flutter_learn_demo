@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/plugin/toast_plugin_demo.dart';
 import 'package:flutter_app/pra_project/bean/article.dart';
 import 'package:flutter_app/pra_project/login/login_mamager.dart';
 import 'package:flutter_app/pra_project/login/login_page.dart';
+import 'package:flutter_app/pra_project/net/net_exceptions.dart';
+import 'package:flutter_app/pra_project/net/net_storage.dart';
 import 'package:flutter_app/pra_project/page/article_web_page.dart';
 
 class ArticleItemView extends StatefulWidget {
@@ -71,9 +74,14 @@ class _ArticleItemViewState extends State<ArticleItemView> {
             icon: Icon(item.collect ? Icons.favorite : Icons.favorite_border),
             color: item.collect ? Colors.red : null,
           ),
-          onTap: () async {
-//            var isLogin = await LoginManager.isLogin();
-            LoginPage.toLogin(context);
+          onTap: () {
+            LoginManager.isLogin().then((value) {
+              if (value == true) {
+                _itemCollect(item);
+              } else {
+                LoginPage.toLogin(context);
+              }
+            });
           },
         )
       ],
@@ -97,6 +105,33 @@ class _ArticleItemViewState extends State<ArticleItemView> {
         ],
       ),
     );
+  }
+
+  //收藏或取消收藏
+  _itemCollect(ArticleItem item) {
+    //取消收藏
+    if (item.collect) {
+      NetStorage.unCollect(item.id).then((_) {
+        setState(() {
+          item.collect = false;
+        });
+      },onError: _handleError);
+    } else {
+      //收藏
+      NetStorage.toCollect(item.id).then((_) {
+        setState(() {
+          item.collect = true;
+        });
+      }).catchError(_handleError);
+    }
+  }
+
+  _handleError(dynamic e){
+    debugPrint("$e");
+    if(e is NetException){
+      FlutterToast.toast(e.netErrorData);
+    }
+
   }
 
   @override

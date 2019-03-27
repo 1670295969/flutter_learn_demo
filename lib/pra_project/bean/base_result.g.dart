@@ -31,8 +31,8 @@ Map<String, dynamic> _$CommonDataToJson<T>(CommonData instance) =>
 DataResult _$DataResultFromJson(Map<String, dynamic> json) {
   return DataResult()
     ..data = json['data']
-    ..errorCode = json['errorCode'] as int
-    ..errorMsg = json['errorMsg'] as String;
+    ..errorCode = json['errorCode']
+    ..errorMsg = json['errorMsg'] ;
 }
 
 Map<String, dynamic> _$DataResultToJson(DataResult instance) =>

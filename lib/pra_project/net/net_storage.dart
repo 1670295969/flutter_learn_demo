@@ -69,6 +69,16 @@ class NetStorage {
     return pageData;
   }
 
+  //取消收藏
+  static Future<DataResult> unCollect(int id){
+    return NetProxy.postDataResult(AppApi.UNCOLLECT_ORIGINID +"$id/json");
+  }
+
+  //收藏
+  static Future<DataResult> toCollect(int id){
+    return NetProxy.postDataResult(AppApi.COLLECT +"$id/json");
+  }
+
 
 
 
