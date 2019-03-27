@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:core';
+
 import 'package:flutter_app/pra_project/bean/banner.dart';
 import 'package:flutter_app/pra_project/bean/base_result.dart';
 import 'package:flutter_app/pra_project/net/base_api.dart';
@@ -56,32 +59,37 @@ class NetStorage {
     });
   }
 
-  static Future<DataResult> getFindList(){
+  static Future<DataResult> getFindList() {
     return NetProxy.getDataResult(AppApi.TREE);
   }
 
   //获取文章列表
-  static Future<CommonData> getArticleListWithTagId(int page,int id) async {
-    var map = {"cid":id};
-    var data = await NetProxy.get(AppApi.ARTICLE_LIST + "$page/json",params: map);
+  static Future<CommonData> getArticleListWithTagId(int page, int id) async {
+    var map = {"cid": id};
+    var data =
+        await NetProxy.get(AppApi.ARTICLE_LIST + "$page/json", params: map);
     var dataResult = DataResult.fromJson(data);
     var pageData = CommonData.fromJson(dataResult.data);
     return pageData;
   }
 
   //取消收藏
-  static Future<DataResult> unCollect(int id){
-    return NetProxy.postDataResult(AppApi.UNCOLLECT_ORIGINID +"$id/json");
+  static Future<DataResult> unCollect(int id) {
+    return NetProxy.postDataResult(AppApi.UNCOLLECT_ORIGINID + "$id/json");
   }
 
   //收藏
-  static Future<DataResult> toCollect(int id){
-    return NetProxy.postDataResult(AppApi.COLLECT +"$id/json");
+  static Future<DataResult> toCollect(int id) {
+    return NetProxy.postDataResult(AppApi.COLLECT + "$id/json");
   }
 
+  //连接博客
+  static Future<DataResult> friendBlogList() {
+    return NetProxy.getDataResult(AppApi.FRIEND);
+  }
 
-
-
-
-
+  //热门搜索
+  static Future<DataResult> hotSearchList() {
+    return NetProxy.getDataResult(AppApi.HOTKEY);
+  }
 }

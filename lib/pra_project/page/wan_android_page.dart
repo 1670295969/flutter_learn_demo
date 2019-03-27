@@ -7,6 +7,7 @@ import 'package:flutter_app/pra_project/net/net_utils.dart';
 import 'package:flutter_app/pra_project/find/find_tab.dart';
 import 'package:flutter_app/pra_project/page/home_tab.dart';
 import 'package:flutter_app/pra_project/page/mine_tab.dart';
+import 'package:flutter_app/pra_project/search/search_main.dart';
 
 //import 'package:dio/dio.dart';
 //import 'package:flutter/material.dart';
@@ -57,6 +58,12 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
     _initBottomNavList();
   }
 
+  _toSearch() {
+//    SearchMain.push(context);
+    navigatorKey.currentState
+        .push(MaterialPageRoute(builder: (ctx) => SearchMain()));
+  }
+
   Scaffold _home() {
     return Scaffold(
       appBar: AppBar(
@@ -67,10 +74,7 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              //TODO  需要进行补充
-              debugPrint("clicked search");
-            },
+            onPressed: _toSearch,
           )
         ],
       ),
@@ -79,11 +83,10 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
         items: _navViewList,
         currentIndex: _curIndex,
         type: BottomNavigationBarType.fixed,
-        onTap: (selectedIndex) async{
+        onTap: (selectedIndex) async {
           setState(() {
             _curIndex = selectedIndex;
           });
-
         },
       ),
     );
