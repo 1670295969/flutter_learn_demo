@@ -28,7 +28,7 @@ class NetProxy {
     return NetException(netCode, message);
   }
 
-  static Future<String> _getCookie2() async {
+  static Future<List<Cookie>> _getCookie() async {
     String cookieStr = await SpUtils.get("Cookie");
 
     if (cookieStr == null || cookieStr.isEmpty) {
@@ -36,8 +36,21 @@ class NetProxy {
     }
 
     List list = json.decode(cookieStr);
+
+    return list.map((value) {
+      return Cookie.fromSetCookieValue(value.toString().split(";")[0]);
+    }).toList();
+  }
+
+  static Future<String> _getCookie2() async {
+    String cookieStr = await SpUtils.get("Cookie");
+
+    if (cookieStr == null || cookieStr.isEmpty) {
+      return null;
+    }
+
+    List<dynamic> list = json.decode(cookieStr);
     String cookie = "";
-    //
      list.forEach((value) {
       cookie +="${value.toString().split(";")[0]}; ";
     });
@@ -62,8 +75,9 @@ class NetProxy {
   static Future<dynamic> get(String api,
       {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
     if (headers == null) {
-      headers = Map();
+      headers = Map<String,dynamic>();
     }
+//    var cookieList = await _getCookie();
     _setCookie(headers);
     Response resp = await _getDio().get(_getFullUrl(api),
         queryParameters: params,
@@ -81,12 +95,14 @@ class NetProxy {
   static Future<dynamic> post(String api,
       {Map<String, dynamic> params, Map<String, dynamic> headers}) async {
     if (headers == null) {
-      headers = Map();
+      headers = Map<String,dynamic>();
     }
     _setCookie(headers);
+//    var cookies = await _getCookie();
+    var cookieList = await _getCookie();
     Response resp = await _getDio().post(_getFullUrl(api),
         queryParameters: params,
-        options: Options(headers: headers,/* cookies: cookieList*/));
+        options: Options(headers: headers, /*cookies: cookieList*/));
     print("net_data = ${resp.data}");
     if (api.contains(AppApi.LOGIN)) {
       resp.headers.forEach((key, values) {
