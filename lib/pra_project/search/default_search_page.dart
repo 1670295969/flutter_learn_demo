@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pra_project/bean/search.dart';
 import 'package:flutter_app/pra_project/net/net_storage.dart';
+import 'package:flutter_app/pra_project/page/article_web_page.dart';
+import 'package:flutter_app/pra_project/search/search_main.dart';
+import 'package:flutter_app/pra_project/search/search_result_page.dart';
 
 class DefaultSearchPage extends StatefulWidget {
   @override
@@ -14,16 +17,14 @@ class _DefaultSearchPageState extends State<DefaultSearchPage> {
 
   List<Widget> blogList = List();
 
-  Widget _buildItem(HotSearch item) {
+  Widget _buildItem(HotSearch item, Function onClicked) {
     return ActionChip(
       backgroundColor: Colors.blue,
       label: Text(
         item.name,
         style: TextStyle(color: Colors.red),
       ),
-      onPressed: () {
-        //TODO 跳转到 search page
-      },
+      onPressed: () => onClicked(item),
     );
   }
 
@@ -33,7 +34,9 @@ class _DefaultSearchPageState extends State<DefaultSearchPage> {
 
       setState(() {
         dataList.forEach((item) {
-          hotSearchList.add(_buildItem(item));
+          hotSearchList.add(_buildItem(item, (HotSearch value) {
+            SearchMain.push(context, value.name);
+          }));
         });
       });
     }, onError: (e) {});
@@ -44,7 +47,9 @@ class _DefaultSearchPageState extends State<DefaultSearchPage> {
       List<HotSearch> dataList = HotSearch.fromJsonList(data.data);
       setState(() {
         dataList.forEach((item) {
-          blogList.add(_buildItem(item));
+          blogList.add(_buildItem(item, (HotSearch value) {
+            ArticleWebPage.push(context, value.name, value.link);
+          }));
         });
       });
     }, onError: (e) {});
@@ -73,7 +78,6 @@ class _DefaultSearchPageState extends State<DefaultSearchPage> {
           runSpacing: 6,
           children: hotSearchList,
         ),
-
         Padding(
           padding: EdgeInsets.all(10),
           child: Text(

@@ -61,7 +61,7 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
   _toSearch() {
 //    SearchMain.push(context);
     navigatorKey.currentState
-        .push(MaterialPageRoute(builder: (ctx) => SearchMain()));
+        .push(MaterialPageRoute(builder: (ctx) => SearchMain(null)));
   }
 
   Scaffold _home() {

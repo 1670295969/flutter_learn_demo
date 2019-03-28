@@ -33,6 +33,7 @@ dependencies:
   dio: 2.1.0
   flutter_webview_plugin: "^0.3.1"
   rxdart: ^0.21.0
+  flutter_html_view: ^0.5.11
 
 dev_dependencies:
   flutter_test:

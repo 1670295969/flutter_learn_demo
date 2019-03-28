@@ -92,4 +92,14 @@ class NetStorage {
   static Future<DataResult> hotSearchList() {
     return NetProxy.getDataResult(AppApi.HOTKEY);
   }
+
+  //搜索列表
+  static Future<DataResult> search(String key,int currentPage) {
+    return NetProxy.postDataResult(AppApi.ARTICLE_QUERY+"$currentPage/json", params: {"k": key});
+  }
+
+
+
+
+
 }
