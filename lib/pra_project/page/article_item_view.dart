@@ -6,7 +6,6 @@ import 'package:flutter_app/pra_project/login/login_page.dart';
 import 'package:flutter_app/pra_project/net/net_exceptions.dart';
 import 'package:flutter_app/pra_project/net/net_storage.dart';
 import 'package:flutter_app/pra_project/page/article_web_page.dart';
-import 'package:flutter_html_view/flutter_html_text.dart';
 
 class ArticleItemView extends StatefulWidget {
   ArticleItem item;

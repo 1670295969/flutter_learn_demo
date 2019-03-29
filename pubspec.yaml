@@ -20,6 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 #  cupertino_icons: ^0.1.0
+  flutter_localizations:
+    sdk: flutter
   english_words: ^3.1.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -33,7 +35,18 @@ dependencies:
   dio: 2.1.0
   flutter_webview_plugin: "^0.3.1"
   rxdart: ^0.21.0
-  flutter_html_view: ^0.5.11
+
+
+  cached_network_image: ^0.5.1
+  fluttertoast: ^2.2.2
+  photo_view: ^0.1.0
+  pull_to_refresh: ^1.1.6
+  objectdb: ^1.0.5
+  event_bus: ^1.0.1
+  url_launcher: ^4.0.3
+  flutter_redux: ^0.5.2
+  connectivity: ^0.3.2
+  package_info: ^0.4.0+1
 
 dev_dependencies:
   flutter_test:
@@ -52,9 +65,38 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+#  - images/lake.png
+#    - images/ic_launcher_round.png
+#    - iamges/favorite_empty.png
+#    - iamges/gank.png
   assets:
     - images/lake.png
     - images/ic_launcher_round.png
+    - images/favorite_empty.png
+    - images/gank.png
+
+
+
+  fonts:
+  - family: IconFont
+    fonts:
+    - asset: static/font/iconfont.ttf
+
+  - family: WorkSansSemiBold
+    fonts:
+    - asset: static/font/WorkSans-SemiBold.ttf
+
+  - family: WorkSansBold
+    fonts:
+    - asset: static/font/WorkSans-Bold.ttf
+
+  - family: WorkSansMedium
+    fonts:
+    - asset: static/font/WorkSans-Medium.ttf
+
+  - family: WorkSansLight
+    fonts:
+    - asset: static/font/WorkSans-Light.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -98,8 +98,6 @@ class NetProxy {
       headers = Map<String,dynamic>();
     }
     _setCookie(headers);
-//    var cookies = await _getCookie();
-    var cookieList = await _getCookie();
     Response resp = await _getDio().post(_getFullUrl(api),
         queryParameters: params,
         options: Options(headers: headers, /*cookies: cookieList*/));
