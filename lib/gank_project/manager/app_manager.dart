@@ -15,7 +15,7 @@ import 'package:redux/redux.dart';
 class AppManager {
   static EventBus eventBus = EventBus();
 
-  static initApp(BuildContext context) async {
+  static Future<bool> initApp(BuildContext context) async {
     try {
       Store<AppState> store = StoreProvider.of(context);
 

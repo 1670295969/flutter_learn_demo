@@ -4,7 +4,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/gank_project/constant/colors.dart';
 import 'package:flutter_app/gank_project/localization/gank_localizations_delegate.dart';
+import 'package:flutter_app/gank_project/localization/gank_localizations_wrapper.dart';
+import 'package:flutter_app/gank_project/page/splash_page.dart';
 import 'package:flutter_app/gank_project/redux/app_state.dart';
+import 'package:flutter_app/gank_project/utils/navigator_utils.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,7 +50,7 @@ class GankMainApp extends StatelessWidget{
           locale: store.state.locale,
           supportedLocales: [store.state.locale],
           routes: {
-
+          NavigatorUtils.ROUTE_SPLASH_PAGE:(context)=>GankLocalizationsWrapper(child: SplashPage()),
           },
         );
       }),

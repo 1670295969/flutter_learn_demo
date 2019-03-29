@@ -17,11 +17,11 @@ class HttpManager{
         return NetResponse(response.data, true, HttpCodeHandler.SUCCESS,
             headers: response.headers);
       }else{
-        return NetResponse(response.data, false, response.statusCode,
+        throw NetResponse(response.data, false, response.statusCode,
             headers: response.headers);
       }
     } catch (e) {
-      return NetResponse(response.data, false, response.statusCode,
+      throw NetResponse(response.data, false, response.statusCode,
           headers: response.headers);
     }
 
