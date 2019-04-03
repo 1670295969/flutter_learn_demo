@@ -2,6 +2,8 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/gank_project/bean/github_user.dart';
 import 'package:flutter_app/gank_project/config/gank_config.dart';
+import 'package:flutter_app/gank_project/event/event_show_history_date.dart';
+import 'package:flutter_app/gank_project/manager/store_manager.dart';
 import 'package:flutter_app/gank_project/manager/user_manager.dart';
 import 'package:flutter_app/gank_project/redux/app_state.dart';
 import 'package:flutter_app/gank_project/redux/redux_locale.dart';
@@ -38,6 +40,7 @@ class AppManager {
 
       return true;
     } catch (e) {
+      print("$e");
       return false;
     }
   }
@@ -67,5 +70,13 @@ class AppManager {
 
     store.dispatch(RefreshLocalAction(locale));
     await GSPUtils.save(GankConfig.LOCALE, index.toString());
+  }
+
+  static notifyShowHistoryDateEvent() {
+    AppManager.eventBus.fire(ShowHistoryDateEvent());
+  }
+
+  static ThemeData getThemeData(context) {
+    return StoreManager.get(context).state.themeData;
   }
 }

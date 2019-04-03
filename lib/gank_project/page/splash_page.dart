@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/gank_project/manager/app_manager.dart';
+import 'package:flutter_app/gank_project/utils/navigator_utils.dart';
 
 class SplashPage extends StatefulWidget{
   @override
@@ -25,27 +26,54 @@ class _SplashPageState extends State<SplashPage>{
   //
   //需要注意的是，涉及到controller的变更，需要在这个函数中移除老的controller的监听，并创建新controller的监听。
   @override
-  void didUpdateWidget(SplashPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     if(hadInit){
       return ;
     }
     hadInit = true;
-    AppManager.initApp(context).then((value){
+    AppManager.initApp(context).then((_){
       Future.delayed(Duration(seconds: 2),(){
-
+        NavigatorUtils.pushReplacementNamed(context, NavigatorUtils.ROUTE_HOME);
       });
     });
-
-
-
   }
-
 
 
   @override
   Widget build(BuildContext context) {
-    return null;
+    return Scaffold(
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: FractionalOffset.center,
+              child: Padding(
+                padding: EdgeInsets.only(bottom:150.0),
+                child: Image.asset(
+                  "images/gank.png",
+                  width: 100,
+                ),
+              ),
+            ),
+            Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                child: Text(
+                  '${DateTime.now().year}@gank.io',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontFamily: "WorkSansMedium"
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      )
+
+    );
   }
 
 }

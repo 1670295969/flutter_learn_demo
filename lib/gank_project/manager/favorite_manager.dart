@@ -10,6 +10,8 @@ import 'package:flutter_app/gank_project/localization/gank_localizations.dart';
 import 'package:flutter_app/gank_project/manager/app_manager.dart';
 import 'package:flutter_app/gank_project/manager/store_manager.dart';
 import 'package:flutter_app/gank_project/utils/common_utils.dart';
+import 'package:flutter_app/gank_project/widget/dialog_item.dart';
+import 'package:flutter_app/gank_project/widget/icon_font.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -81,23 +83,52 @@ class FavoriteManager{
     await db.close();
   }
 
-//  static uploadFavoritesToServer(BuildContext context) async{
-//
-//    try{
-//
-//      User user = StoreManager.get(context).state.userInfo;
-//      if(user == null){
-//
-//      }
-//
-//
-//    }cache(e){
-//
-//    }
-//
-//
-//
-//  }
+  static syncFavorites(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => SimpleDialog(
+            title: Text(CommonUtils.getLocale(context).syncMethod),
+            children: <Widget>[
+              DialogItem(
+                  icon: IconFont(0xe741),
+                  color: AppManager.getThemeData(context).primaryColor,
+                  text: CommonUtils.getLocale(context).syncMethodUpload,
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    CommonUtils.showToast(
+                        await FavoriteManager.uploadFavoritesToServer(
+                            context));
+                  }),
+              DialogItem(
+                  icon: IconFont(0xe742),
+                  color: AppManager.getThemeData(context).primaryColor,
+                  text: CommonUtils.getLocale(context).syncMethodDownload,
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    CommonUtils.showToast(
+                        await FavoriteManager.downloadFavoritesFromServer(
+                            context));
+                  }),
+              DialogItem(
+                  icon: IconFont(0xe662),
+                  text: CommonUtils.getLocale(context).syncMethodMerge,
+                  onPressed: () {
+                    Navigator.pop(context);
+                    CommonUtils.showToast(
+                        CommonUtils.getLocale(context).supportLater);
+                  },
+                  color: AppManager.getThemeData(context).primaryColor),
+            ]));
+  }
+  static uploadFavoritesToServer(BuildContext context) async {
+    ///github
+  }
+
+  static downloadFavoritesFromServer(BuildContext context) async {
+   ///github
+  }
+
+
 
 
 
