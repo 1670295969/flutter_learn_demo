@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/bean/article.dart';
-import 'package:flutter_app/pra_project/bean/banner.dart';
-import 'package:flutter_app/pra_project/bean/base_result.dart';
-import 'package:flutter_app/pra_project/net/base_api.dart';
-import 'package:flutter_app/pra_project/net/net_storage.dart';
-import 'package:flutter_app/pra_project/net/net_utils.dart';
-import 'package:flutter_app/pra_project/page/article_item_view.dart';
-import 'package:flutter_app/pra_project/utils/constants.dart';
-import 'package:flutter_app/pra_project/widgeet/banner_view.dart';
+import 'package:flutter_app/wan_android_project/bean/article.dart';
+import 'package:flutter_app/wan_android_project/bean/banner.dart';
+import 'package:flutter_app/wan_android_project/bean/base_result.dart';
+import 'package:flutter_app/wan_android_project/net/base_api.dart';
+import 'package:flutter_app/wan_android_project/net/net_storage.dart';
+import 'package:flutter_app/wan_android_project/net/net_utils.dart';
+import 'package:flutter_app/wan_android_project/page/article_item_view.dart';
+import 'package:flutter_app/wan_android_project/utils/constants.dart';
+import 'package:flutter_app/wan_android_project/widgeet/banner_view.dart';
 
 class HomePage extends StatefulWidget {
   @override

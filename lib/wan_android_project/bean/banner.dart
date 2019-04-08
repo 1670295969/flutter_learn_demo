@@ -1,5 +1,5 @@
 //@JsonSerializable()
-import 'package:flutter_app/pra_project/utils/array_utils.dart';
+import 'package:flutter_app/wan_android_project/utils/array_utils.dart';
 
 class ArticleBanner {
   String desc;

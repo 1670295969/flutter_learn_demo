@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_app/pra_project/bean/base_result.dart';
-import 'package:flutter_app/pra_project/login/login_mamager.dart';
-import 'package:flutter_app/pra_project/net/base_api.dart';
-import 'package:flutter_app/pra_project/net/net_exceptions.dart';
-import 'package:flutter_app/pra_project/utils/sp_utils.dart';
+import 'package:flutter_app/wan_android_project/bean/base_result.dart';
+import 'package:flutter_app/wan_android_project/login/login_mamager.dart';
+import 'package:flutter_app/wan_android_project/net/base_api.dart';
+import 'package:flutter_app/wan_android_project/net/net_exceptions.dart';
+import 'package:flutter_app/wan_android_project/utils/sp_utils.dart';
 
 typedef OnSuccessCallBack(dynamic json);
 

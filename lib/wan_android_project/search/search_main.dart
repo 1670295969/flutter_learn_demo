@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/search/default_search_page.dart';
-import 'package:flutter_app/pra_project/search/search_result_page.dart';
+import 'package:flutter_app/wan_android_project/search/default_search_page.dart';
+import 'package:flutter_app/wan_android_project/search/search_result_page.dart';
 
 class SearchMain extends StatefulWidget {
   String searchKey;

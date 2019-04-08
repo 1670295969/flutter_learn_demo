@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/login/login_mamager.dart';
-import 'package:flutter_app/pra_project/login/login_page.dart';
+import 'package:flutter_app/wan_android_project/login/login_mamager.dart';
+import 'package:flutter_app/wan_android_project/login/login_page.dart';
 
 class MinePage extends StatefulWidget {
   @override

@@ -9,7 +9,6 @@ import 'package:flutter_app/gank_project/page/gk_home_page.dart';
 import 'package:flutter_app/gank_project/page/splash_page.dart';
 import 'package:flutter_app/gank_project/redux/app_state.dart';
 import 'package:flutter_app/gank_project/utils/navigator_utils.dart';
-import 'package:flutter_app/pra_project/page/home_tab.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

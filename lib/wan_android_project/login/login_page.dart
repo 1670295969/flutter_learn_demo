@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/login/login_mamager.dart';
-import 'package:flutter_app/pra_project/net/net_storage.dart';
+import 'package:flutter_app/wan_android_project/login/login_mamager.dart';
+import 'package:flutter_app/wan_android_project/net/net_storage.dart';
 
 class LoginPage extends StatefulWidget {
   static Future<dynamic> toLogin(BuildContext context) async {

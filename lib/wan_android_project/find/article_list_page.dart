@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/bean/article.dart';
-import 'package:flutter_app/pra_project/net/net_storage.dart';
-import 'package:flutter_app/pra_project/page/article_item_view.dart';
+import 'package:flutter_app/wan_android_project/bean/article.dart';
+import 'package:flutter_app/wan_android_project/net/net_storage.dart';
+import 'package:flutter_app/wan_android_project/page/article_item_view.dart';
 
 class ArticleListPage extends StatefulWidget{
 

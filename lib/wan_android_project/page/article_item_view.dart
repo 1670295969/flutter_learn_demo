@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/plugin/toast_plugin_demo.dart';
-import 'package:flutter_app/pra_project/bean/article.dart';
-import 'package:flutter_app/pra_project/login/login_mamager.dart';
-import 'package:flutter_app/pra_project/login/login_page.dart';
-import 'package:flutter_app/pra_project/net/net_exceptions.dart';
-import 'package:flutter_app/pra_project/net/net_storage.dart';
-import 'package:flutter_app/pra_project/page/article_web_page.dart';
+import 'package:flutter_app/wan_android_project/bean/article.dart';
+import 'package:flutter_app/wan_android_project/login/login_mamager.dart';
+import 'package:flutter_app/wan_android_project/login/login_page.dart';
+import 'package:flutter_app/wan_android_project/net/net_exceptions.dart';
+import 'package:flutter_app/wan_android_project/net/net_storage.dart';
+import 'package:flutter_app/wan_android_project/page/article_web_page.dart';
 
 class ArticleItemView extends StatefulWidget {
   ArticleItem item;

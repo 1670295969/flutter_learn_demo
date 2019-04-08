@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:flutter_app/pra_project/bean/banner.dart';
-import 'package:flutter_app/pra_project/bean/base_result.dart';
-import 'package:flutter_app/pra_project/net/base_api.dart';
-import 'package:flutter_app/pra_project/net/net_utils.dart';
+import 'package:flutter_app/wan_android_project/bean/banner.dart';
+import 'package:flutter_app/wan_android_project/bean/base_result.dart';
+import 'package:flutter_app/wan_android_project/net/base_api.dart';
+import 'package:flutter_app/wan_android_project/net/net_utils.dart';
 
 class NetStorage {
 //获取banner列表

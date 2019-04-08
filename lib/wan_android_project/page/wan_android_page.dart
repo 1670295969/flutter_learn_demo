@@ -1,19 +1,19 @@
 //主界面
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/bean/base_result.dart';
-import 'package:flutter_app/pra_project/net/base_api.dart';
-import 'package:flutter_app/pra_project/net/net_utils.dart';
-import 'package:flutter_app/pra_project/find/find_tab.dart';
-import 'package:flutter_app/pra_project/page/home_tab.dart';
-import 'package:flutter_app/pra_project/page/mine_tab.dart';
-import 'package:flutter_app/pra_project/search/search_main.dart';
+import 'package:flutter_app/wan_android_project/bean/base_result.dart';
+import 'package:flutter_app/wan_android_project/net/base_api.dart';
+import 'package:flutter_app/wan_android_project/net/net_utils.dart';
+import 'package:flutter_app/wan_android_project/find/find_tab.dart';
+import 'package:flutter_app/wan_android_project/page/home_tab.dart';
+import 'package:flutter_app/wan_android_project/page/mine_tab.dart';
+import 'package:flutter_app/wan_android_project/search/search_main.dart';
 
 //import 'package:dio/dio.dart';
 //import 'package:flutter/material.dart';
-//import 'package:flutter_app/pra_project/bean/base_result.dart';
-//import 'package:flutter_app/pra_project/net/base_api.dart';
-//import 'package:flutter_app/pra_project/net/net_utils.dart';
+//import 'package:flutter_app/wan_android_project/bean/base_result.dart';
+//import 'package:flutter_app/wan_android_project/net/base_api.dart';
+//import 'package:flutter_app/wan_android_project/net/net_utils.dart';
 
 class WanAndroidMainPage extends StatefulWidget {
   @override

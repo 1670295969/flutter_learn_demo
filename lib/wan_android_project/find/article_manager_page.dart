@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/bean/find.dart';
-import 'package:flutter_app/pra_project/find/article_list_page.dart';
+import 'package:flutter_app/wan_android_project/bean/find.dart';
+import 'package:flutter_app/wan_android_project/find/article_list_page.dart';
 
 class ArticleManagerPage extends StatefulWidget {
   static push(BuildContext context, FindItem item) {

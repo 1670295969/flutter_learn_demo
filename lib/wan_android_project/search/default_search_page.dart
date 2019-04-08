@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pra_project/bean/search.dart';
-import 'package:flutter_app/pra_project/net/net_storage.dart';
-import 'package:flutter_app/pra_project/page/article_web_page.dart';
-import 'package:flutter_app/pra_project/search/search_main.dart';
-import 'package:flutter_app/pra_project/search/search_result_page.dart';
+import 'package:flutter_app/wan_android_project/bean/search.dart';
+import 'package:flutter_app/wan_android_project/net/net_storage.dart';
+import 'package:flutter_app/wan_android_project/page/article_web_page.dart';
+import 'package:flutter_app/wan_android_project/search/search_main.dart';
+import 'package:flutter_app/wan_android_project/search/search_result_page.dart';
 
 class DefaultSearchPage extends StatefulWidget {
   @override

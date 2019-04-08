@@ -1,4 +1,4 @@
-import 'package:flutter_app/pra_project/bean/base_result.dart';
+import 'package:flutter_app/wan_android_project/bean/base_result.dart';
 //import 'package:json_annotation/json_annotation.dart';
 //import 'package:json_serializable/json_serializable.dart';
 
