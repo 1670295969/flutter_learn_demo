@@ -12,7 +12,7 @@ class NewPage extends StatefulWidget{
 class _NewPageState extends State<NewPage>{
   @override
   Widget build(BuildContext context) {
-    return null;
+    return Text("New Page");
   }
 
 }
