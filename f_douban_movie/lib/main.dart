@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'find/find.dart';
 import 'home/HomeWidget.dart';
 import 'mine/mine.dart';
+import 'route/route.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: '豆瓣电影'),
+
+      routes: RouteUtils.routeMap(),
     );
   }
 }

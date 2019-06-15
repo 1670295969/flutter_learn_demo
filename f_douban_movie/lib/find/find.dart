@@ -23,12 +23,9 @@ class MoviesWidgetState extends State<MoviesWidget> {
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(Radius.circular(5))),
-          filled:true,
-          fillColor: Colors.black12
-        ),
-
+            filled: true,
+            fillColor: Colors.black12),
       ),
-
     );
   }
 
@@ -38,6 +35,46 @@ class MoviesWidgetState extends State<MoviesWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         _searchWidget(),
+        Expanded(
+          flex: 1,
+          child: DefaultTabController(
+            length: 2,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  constraints: BoxConstraints.expand(height: 50),
+                  child: TabBar(
+                    unselectedLabelColor: Colors.black12,
+                    labelColor: Colors.black87,
+                    indicatorColor: Colors.black87,
+                    tabs: [
+                      Tab(
+                        text: '电影',
+                      ),
+                      Tab(
+                        text: '电视',
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    child: TabBarView(
+                      children: [
+                        Center(
+                          child: Text("电影"),
+                        ),
+                        Center(
+                          child: Text("电视"),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

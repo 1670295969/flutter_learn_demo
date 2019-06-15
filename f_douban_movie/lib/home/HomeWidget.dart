@@ -1,3 +1,5 @@
+import 'package:f_douban_movie/home/hot_movie.dart';
+import 'package:f_douban_movie/route/route.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -8,12 +10,17 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  String currentCity = "深圳";
+
   Widget _searchBar() {
     return Row(
       children: <Widget>[
-        Text(
-          "深圳",
-          style: TextStyle(fontSize: 16),
+        GestureDetector(
+          child: Text(
+            currentCity,
+            style: TextStyle(fontSize: 16),
+          ),
+          onTap: () => RouteUtils.pushedToCity(context,currentCity),
         ),
         Icon(Icons.arrow_drop_down),
         Expanded(
@@ -69,9 +76,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Container(
                     child: TabBarView(
                       children: [
-                        Center(
-                          child: Text("正在上映"),
-                        ),
+                        HotMoviesListWidget(currentCity),
                         Center(
                           child: Text("即将上映"),
                         )
