@@ -14,8 +14,8 @@ class RouteUtils{
 
   }
 
-  static void pushedToCity(context,currentCity){
-    Navigator.pushNamed(context, "/Citys",arguments: currentCity);
+  static Future pushedToCity(context,currentCity) {
+    return Navigator.pushNamed(context, "/Citys",arguments: currentCity);
   }
 
 

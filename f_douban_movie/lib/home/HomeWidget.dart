@@ -20,7 +20,14 @@ class _HomeWidgetState extends State<HomeWidget> {
             currentCity,
             style: TextStyle(fontSize: 16),
           ),
-          onTap: () => RouteUtils.pushedToCity(context,currentCity),
+          onTap: () async {
+            var city = await RouteUtils.pushedToCity(context, currentCity);
+            if (city != null) {
+              setState(() {
+                currentCity = city;
+              });
+            }
+          },
         ),
         Icon(Icons.arrow_drop_down),
         Expanded(

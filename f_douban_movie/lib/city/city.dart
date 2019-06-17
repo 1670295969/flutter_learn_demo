@@ -9,10 +9,11 @@ class CityWidget extends StatefulWidget {
 
 class CityWidgetState extends State<CityWidget> {
   String currentCity;
+  List<String> hotCitys;
 
   _initData() {
     currentCity = ModalRoute.of(context).settings.arguments;
-    List<String> hotCitys = [
+    hotCitys = [
       '北京',
       '上海',
       '广州',
@@ -50,7 +51,86 @@ class CityWidgetState extends State<CityWidget> {
             child: Container(
               child: TabBarView(
                 physics: ClampingScrollPhysics(),
-                children: [],
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        height: 50,
+                        child: TextField(
+                          cursorColor: Colors.green,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: 14),
+                            hintText: "请输入城市名查询",
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.black38,
+                            ),
+                            fillColor: Colors.white,
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, left: 20),
+                        child: MaterialButton(
+                          onPressed: () {},
+                          child: Container(
+                            width: 50,
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.location_on,
+                                  size: 14,
+                                  color: Colors.green,
+                                ),
+                                Text(currentCity),
+                              ],
+                            ),
+                          ),
+                          color: Colors.white,
+                          elevation: 0,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, left: 20),
+                        child: Text(
+                          "热门城市",
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 20, right: 20, top: 10),
+                          child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              childAspectRatio: 2.6,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 40,
+                            ),
+                            itemCount: hotCitys.length,
+                            itemBuilder: (context, index) {
+                              return MaterialButton(
+                                child: Text(hotCitys[index]),
+                                color: Colors.white,
+                                elevation: 0,
+                                onPressed: () {
+                                  Navigator.pop(context,hotCitys[index]);
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Center(child: Text("国外"),),
+                ],
               ),
             ),
           ),
