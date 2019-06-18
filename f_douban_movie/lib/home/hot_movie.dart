@@ -1,14 +1,12 @@
 import 'package:f_douban_movie/bean/hot_movie_data.dart';
 import 'package:f_douban_movie/home/hot_movie_item.dart';
+import 'package:f_douban_movie/inherited/inherited.dart';
 import 'package:f_douban_movie/net/DouBanNetStorage.dart';
 import 'package:flutter/material.dart';
 
 class HotMoviesListWidget extends StatefulWidget {
 
-
-  String currentCity;
-
-  HotMoviesListWidget(this.currentCity);
+  HotMoviesListWidget();
 
 
   @override
@@ -19,18 +17,25 @@ class HotMoviesListWidget extends StatefulWidget {
 
 class HotMovieListWidgetStatus extends State<HotMoviesListWidget> with AutomaticKeepAliveClientMixin {
   List<HotMovieData> hotMovies = [];
-
+  String currentCity;
   @override
   void initState()  {
     super.initState();
 
-    DouBanNetStorage.reqHotMovieList(widget.currentCity).then((value){
+//    setState(() {});
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    currentCity = ShareDataInheritedWidget.of(context).currentCity;
+    DouBanNetStorage.reqHotMovieList(currentCity).then((value){
       hotMovies = value;
       setState(() {
 
       });
     });
-//    setState(() {});
+
   }
 
   @override
@@ -59,6 +64,5 @@ class HotMovieListWidgetStatus extends State<HotMoviesListWidget> with Automatic
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;//返回 true，表示不会被回收
 }

@@ -1,4 +1,5 @@
 import 'package:f_douban_movie/home/hot_movie.dart';
+import 'package:f_douban_movie/inherited/inherited.dart';
 import 'package:f_douban_movie/route/route.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,18 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  String currentCity = "深圳";
+  String currentCity = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    currentCity = ShareDataInheritedWidget.of(context).currentCity;
+  }
 
   Widget _searchBar() {
     return Row(
@@ -24,7 +36,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             var city = await RouteUtils.pushedToCity(context, currentCity);
             if (city != null) {
               setState(() {
-                currentCity = city;
+                ShareDataInheritedWidget.of(context).currentCity = city;
               });
             }
           },
@@ -83,7 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   child: Container(
                     child: TabBarView(
                       children: [
-                        HotMoviesListWidget(currentCity),
+                        HotMoviesListWidget(),
                         Center(
                           child: Text("即将上映"),
                         )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'find/find.dart';
 import 'home/HomeWidget.dart';
+import 'inherited/inherited.dart';
 import 'mine/mine.dart';
 import 'route/route.dart';
 
@@ -17,7 +18,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: '豆瓣电影'),
-
       routes: RouteUtils.routeMap(),
     );
   }
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetItem[_selectedIndex],
+      body: ShareDataInheritedWidget("深圳", child: _widgetItem[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           _createNavItem(Icons.school, "热映"),
