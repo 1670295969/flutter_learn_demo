@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/wan_android_project/anim/anim.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+//import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class ArticleWebPage extends StatefulWidget {
   final String title;
@@ -25,27 +25,28 @@ class ArticleWebPage extends StatefulWidget {
 }
 
 class _ArticleWebPageState extends State<ArticleWebPage> {
-  final flutterWebViewPlugin = FlutterWebviewPlugin();
+//  final flutterWebViewPlugin = FlutterWebviewPlugin();
 
   @override
   void initState() {
     super.initState();
-    flutterWebViewPlugin.onDestroy.listen((_) {
-      Navigator.of(context).pop();
-    });
+//    flutterWebViewPlugin.onDestroy.listen((_) {
+//      Navigator.of(context).pop();
+//    });
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("web url ${widget.url}");
-    return WebviewScaffold(
-      url: widget.url,
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      withZoom: false,
-      withJavascript: true,
-      withLocalStorage: true,
-    );
+    return null;
+//    debugPrint("web url ${widget.url}");
+////    return WebviewScaffold(
+//      url: widget.url,
+//      appBar: AppBar(
+//        title: Text(widget.title),
+//      ),
+//      withZoom: false,
+//      withJavascript: true,
+//      withLocalStorage: true,
+//    );
   }
 }
