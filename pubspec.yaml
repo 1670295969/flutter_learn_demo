@@ -29,7 +29,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   http: ^0.11.3+17
   sqflite: any
-  path_provider: ^1.1.0
+  path_provider: ^0.5.0+1
   shared_preferences: ^0.5.3+1
   scoped_model: ^1.0.1
 #  json_annotation: ^2.0.0
@@ -39,7 +39,7 @@ dependencies:
 
 
   cached_network_image: ^0.8.0
-  wan_android_project: ^0.3.2
+#  wan_android_project: ^0.3.2
   fluttertoast: ^2.2.2
   photo_view: ^0.1.0
   pull_to_refresh: ^1.1.6

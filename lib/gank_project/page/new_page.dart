@@ -48,7 +48,7 @@ class _NewPageState extends State<NewPage> with AutomaticKeepAliveClientMixin{
   Future _onRefresh(bool up) async{
     if(up){
       await _getNewData(date: _date,isRefresh: true);
-      _refreshController.sendBack(true, RefreshStatus.completed);
+      _refreshController.refreshCompleted(resetFooterState:true);
     }
   }
 
@@ -126,7 +126,7 @@ class _NewPageState extends State<NewPage> with AutomaticKeepAliveClientMixin{
               enablePullUp: false,
               onRefresh: _onRefresh,
               onOffsetChange: null,
-              headerBuilder: RefreshFactory.buildDefaultHeader,
+              header: RefreshFactory.buildDefaultHeader(context),
               controller: _refreshController,
               child: _buildListView()
 
