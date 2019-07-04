@@ -1,6 +1,6 @@
 //import 'package:json_annotation/json_annotation.dart';
 //
-part 'base_result.g.dart';
+part 'base_result_ext.dart';
 
 //@JsonSerializable()
 class CommonData {

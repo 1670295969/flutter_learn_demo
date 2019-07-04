@@ -2,7 +2,7 @@ import 'package:flutter_app/wan_android_project/bean/base_result.dart';
 //import 'package:json_annotation/json_annotation.dart';
 //import 'package:json_serializable/json_serializable.dart';
 
-part 'article.g.dart';
+part 'article_ext.dart';
 //json 序列化方案
 //一次性生成                                                               `--delete-conflicting-outputs`
 //通过在我们的项目根目录下运行flutter packages pub run build_runner build，我们可以在需要时为我们的model生成json序列化代码。

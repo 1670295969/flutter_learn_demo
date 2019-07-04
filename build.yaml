@@ -1,0 +1,10 @@
+
+#运行命令  flutter packages pub run build_runner build
+# flutter packages pub run build_runner clean
+builders:
+  testBuilder:
+    import: "package:flutter_app/learn_simple/dart_apt.dart"
+    builder_factories: ["testBuilder"]
+    build_extensions: {".dart": [".gen.part"]}
+    auto_apply: root_package
+    build_to: source
