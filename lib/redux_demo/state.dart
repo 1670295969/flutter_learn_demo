@@ -8,12 +8,12 @@ class CountState {
   CountState.initState() : _count = 0;
 }
 
-enum Action{
+enum CountAction{
   increment
 }
 
 CountState reducer(CountState state,action){
-  if(action == Action.increment){
+  if(action == CountAction.increment){
     return CountState(state._count+1);
   }
   return state;

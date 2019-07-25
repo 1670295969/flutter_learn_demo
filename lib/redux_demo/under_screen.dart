@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/redux_demo/state.dart';
+import 'package:flutter_app/redux_demo/state.dart' ;
+//import 'package:flutter_app/redux_demo/state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class UnderScreen extends StatefulWidget {
@@ -36,7 +37,7 @@ class _UnderScreenState extends State<UnderScreen> {
       floatingActionButton: StoreConnector<CountState,VoidCallback>(
 
         converter: (store) {
-          return () => store.dispatch(Action.increment);
+          return () => store.dispatch(CountAction.increment);
         },
         builder: (context, callback) {
           return FloatingActionButton(
